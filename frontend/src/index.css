@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0a0a0a;
+    color: #eab308;
+    background-image: radial-gradient(circle at 50% 50%, rgba(20, 20, 20, 1) 0%, rgba(5, 5, 5, 1) 100%);
+    min-height: 100vh;
+  }
+}
+
+.fids-board {
+  border: 4px solid #222;
+  border-radius: 8px;
+  background-color: #0a0a0a;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle CRT scanline effect */
+.fids-board::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 2;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+}
+
+.fids-row {
+  border-bottom: 2px solid #1a1a1a;
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+  z-index: 10;
+  position: relative;
+}
+
+.fids-row:hover {
+  background-color: #1a1a1a;
+}
+
+.text-glow-yellow {
+  text-shadow: 0 0 5px rgba(234, 179, 8, 0.6);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 5px rgba(34, 197, 94, 0.8), 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+.text-glow-red {
+  text-shadow: 0 0 5px rgba(239, 68, 68, 0.8), 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+.flicker-in {
+  animation: flicker 0.3s ease-in-out;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  20% {
+    opacity: 0.1;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 0.3;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.modal-overlay {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.modal-content {
+  animation: slideUp 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+
+  to {
+    opacity: 1;
+    backdrop-filter: blur(4px);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
